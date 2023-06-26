@@ -4,5 +4,5 @@
 void main()
 {
     char buff[50];
-    printf("%lu \n", sizeof(buff));
+    printf("%10s", buff);
 }
