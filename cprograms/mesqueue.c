@@ -38,14 +38,14 @@ int main()
 
     if (pid == 0)
     {
-        msgsnd(qid, &message, len, IPC_NOWAIT);
+        msgsnd(qid, &message, len, IPC_NOWAIT); // Used to send a message in the queue of ID qid, IPC_NOWAIT flag is used to throw error if message queue is full
         printf("\n\nMESSAGE SENT BY CHILD PROCESS\n");
     }
 
     if (pid > 0)
     {
         wait(NULL);
-        msgrcv(qid, &message, sizeof(message.mtext), 0, IPC_NOWAIT | MSG_NOERROR);
+        msgrcv(qid, &message, sizeof(message.mtext), 0, IPC_NOWAIT | MSG_NOERROR); // First message of the message queue is received. IPC_NOWAIT flag throws error is there is no message in queue, MSG_NOERROR flag throws error is the message received is larger than the buffer size
         printf("\nMESSAGE RECEIVED BY PARENT PROCESS\n");
         printf("\nReceived message is %s\n", message.mtext);
     }
