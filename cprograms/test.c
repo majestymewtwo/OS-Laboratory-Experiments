@@ -3,6 +3,6 @@
 
 void main()
 {
-    errno = 5;
-    perror("An error has occured");
+    char buff[50];
+    printf("%lu \n", sizeof(buff));
 }
