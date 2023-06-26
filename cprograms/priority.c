@@ -2,10 +2,9 @@
 void interchange(int *, int *);
 // s[] for service times
 // p[] for priorities
-// pos[] for ranking in priorities
 void main()
 {
-    int s[25], pos[25], p[25], n, j, i, wt = 0, swt = 0, tt = 0, stt = 0;
+    int s[25], p[25], n, j, i, wt = 0, swt = 0, tt = 0, stt = 0;
     printf("\nPRIORITY SCHEDULING PROCESS\n");
     printf("Enter the no. of jobs:");
     scanf("%d", &n);
@@ -15,18 +14,16 @@ void main()
         scanf("%d", &s[i]);
         printf("\nEnter the Priority %d: ", i);
         scanf("%d", &p[i]);
-        pos[i] = i;
     }
     printf("\nProcess\tBurst Time\tPriority\tWaiting Time\tTurn Around Time");
     for (i = 0; i < n; i++)
     {
         for (j = i + 1; j < n; j++)
         {
-            if (p[i] > p[j])
+            if (p[i] < p[j])
             {
-                interchange(&s[i], &s[j]);     // Switching Service Time Array
-                interchange(&p[i], &p[j]);     // Switching Priority Array
-                interchange(&pos[i], &pos[j]); // Switching in position array
+                interchange(&s[i], &s[j]); // Switching Service Time Array
+                interchange(&p[i], &p[j]); // Switching Priority Array
             }
         }
     }
